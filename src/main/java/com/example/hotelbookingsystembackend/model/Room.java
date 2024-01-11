@@ -17,5 +17,7 @@ public class Room {
     @Id
     @GeneratedValue
     private int id;
+    private int roomNumber;
+    private int numberOfBeds;
 
 }

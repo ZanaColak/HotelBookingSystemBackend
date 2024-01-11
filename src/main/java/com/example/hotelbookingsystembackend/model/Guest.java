@@ -14,8 +14,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Booking {
+public class Guest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int bookingId;
+    private int guestId;
+    private String userName;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private int phoneNumber;
 }

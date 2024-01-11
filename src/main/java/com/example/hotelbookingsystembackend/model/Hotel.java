@@ -18,4 +18,10 @@ public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int hotelId;
+    private String hotelName;
+    private String street;
+    private String city;
+    private int zip;
+    private String country;
+
 }
