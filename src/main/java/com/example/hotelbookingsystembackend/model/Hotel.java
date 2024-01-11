@@ -33,4 +33,7 @@ public class Hotel {
 
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private Set<Room> rooms;
+
+    public Hotel(int hotelId, String hotelName, String street, int size) {
+    }
 }
