@@ -3,8 +3,9 @@ package com.example.hotelbookingsystembackend.service;
 import com.example.hotelbookingsystembackend.dto.ListHotelDto;
 import com.example.hotelbookingsystembackend.model.Hotel;
 import com.example.hotelbookingsystembackend.repository.HotelRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,11 +20,10 @@ public class HotelService {
         this.hotelRepository = hotelRepository;
     }
 
-    public List<ListHotelDto> getAllHotelDTOs() {
-        List<Hotel> hotelList = hotelRepository.findAll();
-        return hotelList.stream()
-                .map(this::convertToDto)
-                .collect(Collectors.toList());
+    public Page<ListHotelDto> getAllHotelDTOs(Pageable pageable) {
+        Page<Hotel> hotelPage = hotelRepository.findAll(pageable);
+        return hotelPage.map(this::convertToDto);
+
     }
 
     private ListHotelDto convertToDto(Hotel hotel){

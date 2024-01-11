@@ -4,6 +4,8 @@ import com.example.hotelbookingsystembackend.dto.ListHotelDto;
 import com.example.hotelbookingsystembackend.model.Hotel;
 import com.example.hotelbookingsystembackend.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/hotel")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class HotelController {
     private final HotelService hotelService;
 
@@ -22,9 +24,9 @@ public class HotelController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<ListHotelDto>> getAllHotel() {
-        List<ListHotelDto> hotelList = hotelService.getAllHotelDTOs();
-        return new ResponseEntity<>(hotelList, HttpStatus.OK);
+    public ResponseEntity<Page<ListHotelDto>> getAllHotel(Pageable pageable) {
+        Page<ListHotelDto> hotelPage = hotelService.getAllHotelDTOs(pageable);
+        return new ResponseEntity<>(hotelPage, HttpStatus.OK);
     }
     @GetMapping("/{id}")
     public ResponseEntity<List<ListHotelDto>> findByHotelId(@PathVariable int id){

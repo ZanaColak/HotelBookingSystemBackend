@@ -19,7 +19,7 @@ public class GuestService {
         return guestRepository.findAll();
     }
 
-    public Guest saveGuest(Guest guest) {
+    public Guest createGuest(Guest guest) {
         return guestRepository.save(guest);
     }
 
