@@ -1,5 +1,6 @@
 package com.example.hotelbookingsystembackend.controller;
 
+import com.example.hotelbookingsystembackend.model.Room;
 import com.example.hotelbookingsystembackend.service.RoomService;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,9 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -22,5 +22,11 @@ public class RoomController {
 
     public RoomController(RoomService roomService) {
         this.roomService = roomService;
+    }
+
+    @PostMapping("/{hotelId}/rooms")
+    public ResponseEntity<String> createRoomInHotel(@PathVariable int hotelId, @RequestBody Room newRoom){
+        roomService.createRoomInHotel(hotelId, newRoom);
+        return ResponseEntity.ok("Værelset er hermed oprettet");
     }
 }

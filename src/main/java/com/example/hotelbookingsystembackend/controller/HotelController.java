@@ -26,6 +26,11 @@ public class HotelController {
         List<ListHotelDto> hotelList = hotelService.getAllHotelDTOs();
         return new ResponseEntity<>(hotelList, HttpStatus.OK);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<List<ListHotelDto>> findByHotelId(@PathVariable int id){
+        List<ListHotelDto> hotelList = hotelService.getHotelById(id);
+        return new ResponseEntity<>(hotelList, HttpStatus.OK);
+    }
 
     @PostMapping("/create")
     public ResponseEntity<Hotel> createHotel(@RequestBody Hotel hotel) {

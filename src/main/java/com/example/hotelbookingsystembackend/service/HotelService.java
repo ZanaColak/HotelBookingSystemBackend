@@ -34,6 +34,13 @@ public class HotelService {
         listHotelDto.setNumberOfRooms(hotel.getRooms().size());
         return listHotelDto;
     }
+
+    public List<ListHotelDto> getHotelById(int id){
+        List<Hotel> hotelList = hotelRepository.findHotelByHotelId(id);
+        return hotelList.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
     public Hotel saveHotel(Hotel hotel) {
         return hotelRepository.save(hotel);
     }
