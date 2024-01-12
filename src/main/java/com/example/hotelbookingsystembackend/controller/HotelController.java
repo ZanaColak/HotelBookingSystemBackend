@@ -34,6 +34,12 @@ public class HotelController {
         return new ResponseEntity<>(hotelList, HttpStatus.OK);
     }
 
+    @GetMapping("/byType/{classificationType}")
+    public ResponseEntity<List<Hotel>> getHotelsByType(@PathVariable String classificationType) {
+        List<Hotel> hotels = hotelService.getHotelsByClassificationType(classificationType);
+        return new ResponseEntity<>(hotels, HttpStatus.OK);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<Hotel> createHotel(@RequestBody Hotel hotel) {
         Hotel saveHotel = hotelService.saveHotel(hotel);

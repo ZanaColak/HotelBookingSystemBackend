@@ -41,6 +41,9 @@ public class HotelService {
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
+    public List<Hotel> getHotelsByClassificationType(String classificationType) {
+        return hotelRepository.findHotelByClassificationTypeContaining(classificationType);
+    }
 
     public Hotel saveHotel(Hotel hotel) {
         return hotelRepository.save(hotel);

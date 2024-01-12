@@ -1,5 +1,6 @@
 package com.example.hotelbookingsystembackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,5 +32,6 @@ public class Guest {
     private LocalDateTime updated;
 
     @OneToMany(mappedBy = "guest")
+    @JsonBackReference
     private List<Reservation> reservations;
 }

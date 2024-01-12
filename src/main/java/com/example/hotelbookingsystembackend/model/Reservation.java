@@ -1,5 +1,6 @@
 package com.example.hotelbookingsystembackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,9 +34,11 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "room_id")
+    @JsonBackReference
     private Room room;
 
     @ManyToOne
     @JoinColumn(name = "guest_id")
+    @JsonBackReference
     private Guest guest;
 }

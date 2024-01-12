@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface HotelRepository extends JpaRepository<Hotel, Integer> {
     List<Hotel> findHotelByHotelId(int id);
+    List<Hotel> findHotelByClassificationTypeContaining(String classification);
 }

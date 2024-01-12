@@ -31,22 +31,20 @@ public class Initdata implements CommandLineRunner {
     private void generateDummyData(int numHotels, int minRooms, int maxRooms, int minBeds, int maxBeds) {
         for (int i = 0; i < numHotels; i++) {
             Hotel hotel = new Hotel();
-            // Set hotel properties
-            hotel.setHotelName("Hotel " + i); // Adjust as needed
+            hotel.setHotelName("Hotel " + i);
             hotel.setCountry("Country " + i);
             hotel.setCity("City " + i);
             hotel.setStreet("Street " + i);
             hotel.setZip(i);
+            hotel.setClassificationType("type" + i);
             hotel.setCreated(LocalDateTime.now());
             hotel.setUpdated(LocalDateTime.now());
 
-            // Save the hotel first
             hotel = hotelRepository.save(hotel);
 
             Set<Room> rooms = generateRooms(minRooms, maxRooms, minBeds, maxBeds, hotel);
             hotel.setRooms(rooms);
 
-            // Update and save the hotel with associated rooms
             hotelRepository.save(hotel);
         }
     }
@@ -59,10 +57,9 @@ public class Initdata implements CommandLineRunner {
         Set<Room> rooms = new HashSet<>();
         for (int i = 0; i < numRooms; i++) {
             Room room = new Room();
-            // Set room properties
-            room.setRoomNumber(i + 1); // Adjust as needed
+            room.setRoomNumber(i + 1);
             room.setNumberOfBeds(random.nextInt(maxBeds - minBeds + 1) + minBeds);
-            room.setRoomPrice(random.nextDouble() * 100); // Adjust as needed
+            room.setRoomPrice(random.nextDouble() * 100);
             room.setHotel(hotel);
             room.setCreated(LocalDateTime.now());
             room.setUpdated(LocalDateTime.now());
@@ -75,5 +72,8 @@ public class Initdata implements CommandLineRunner {
 }
 
  */
+
+
+
 
 
