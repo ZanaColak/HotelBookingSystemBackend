@@ -26,7 +26,7 @@ public class HotelService {
 
     }
 
-    private ListHotelDto convertToDto(Hotel hotel){
+    private ListHotelDto convertToDto(Hotel hotel) {
         ListHotelDto listHotelDto = new ListHotelDto();
         listHotelDto.setId(hotel.getHotelId());
         listHotelDto.setHotelName(hotel.getHotelName());
@@ -35,12 +35,13 @@ public class HotelService {
         return listHotelDto;
     }
 
-    public List<ListHotelDto> getHotelById(int id){
+    public List<ListHotelDto> getHotelById(int id) {
         List<Hotel> hotelList = hotelRepository.findHotelByHotelId(id);
         return hotelList.stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
+
     public Hotel saveHotel(Hotel hotel) {
         return hotelRepository.save(hotel);
     }
@@ -55,6 +56,13 @@ public class HotelService {
     }
 
     public void deleteHotel(int id) {
-        hotelRepository.deleteById(id);
+        Hotel hotel = hotelRepository.findById(id).orElse(null);
+        if (hotel != null) {
+            if (hotel.getRooms().stream().anyMatch(room -> !room.getReservations().isEmpty())) {
+                throw new RuntimeException("Hotel kan ikke slettes fordi at der er reserverede værelser.");
+            } else {
+                hotelRepository.deleteById(id);
+            }
+        }
     }
 }

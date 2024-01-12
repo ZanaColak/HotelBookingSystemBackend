@@ -18,7 +18,7 @@ public class RoomService {
         this.hotelRepository = hotelRepository;
     }
 
-    public Room createRoomInHotel(int hotelId, Room newRom){
+    public void createRoomInHotel(int hotelId, Room newRom){
         Hotel hotel = hotelRepository.findById(hotelId).orElse(null);
 
         if (hotel != null){
@@ -27,6 +27,9 @@ public class RoomService {
         }else {
             throw new RuntimeException("Hotel ikke fundet på dette id " + hotelId);
         }
-        return newRom;
+    }
+
+    public void saveRoom(Room room){
+        roomRepository.save(room);
     }
 }

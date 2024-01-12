@@ -10,23 +10,20 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("/room")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class RoomController {
     private final RoomService roomService;
 
+    @Autowired
     public RoomController(RoomService roomService) {
         this.roomService = roomService;
     }
 
-    @PostMapping("/{hotelId}/rooms")
-    public ResponseEntity<String> createRoomInHotel(@PathVariable int hotelId, @RequestBody Room newRoom){
-        roomService.createRoomInHotel(hotelId, newRoom);
-        return ResponseEntity.ok("Værelset er hermed oprettet");
-    }
 }

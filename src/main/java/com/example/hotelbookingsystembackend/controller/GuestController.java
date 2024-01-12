@@ -31,4 +31,5 @@ public class GuestController {
         Guest saveGuest = guestService.createGuest(guest);
         return new ResponseEntity<>(saveGuest, HttpStatus.CREATED);
     }
+
 }

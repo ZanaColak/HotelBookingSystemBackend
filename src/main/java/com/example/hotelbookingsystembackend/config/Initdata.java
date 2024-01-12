@@ -1,4 +1,4 @@
-package com.example.hotelbookingsystembackend.config;
+/*package com.example.hotelbookingsystembackend.config;
 
 import com.example.hotelbookingsystembackend.model.Hotel;
 import com.example.hotelbookingsystembackend.model.Room;
@@ -25,7 +25,7 @@ public class Initdata implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        generateDummyData(10, 10, 40, 1, 4);
+        generateDummyData(250, 10, 40, 1, 4);
     }
 
     private void generateDummyData(int numHotels, int minRooms, int maxRooms, int minBeds, int maxBeds) {
@@ -73,4 +73,7 @@ public class Initdata implements CommandLineRunner {
         return rooms;
     }
 }
+
+ */
+
 
